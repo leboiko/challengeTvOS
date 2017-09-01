@@ -61,6 +61,14 @@ class HappyScene: SKScene {
         self.view?.addGestureRecognizer(tapRec)
     }
     
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        if(presses.first?.type == UIPressType.menu) {
+            let transition = SKTransition.flipVertical(withDuration: 1.5)
+            let gameScene = SKScene(fileNamed: "GameScene.sks")!;
+            self.view?.presentScene(gameScene, transition: transition)
+        }
+    }
+    
     @objc func tapHandler() {
         if fire!.particleBirthRate > 0 {
             fire!.particleBirthRate = 0

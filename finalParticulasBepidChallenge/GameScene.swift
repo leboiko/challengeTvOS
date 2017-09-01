@@ -62,10 +62,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     
     func tapSelect(_ sender: UITapGestureRecognizer) {
+                
         
-        
-        
-        if self.childNode(withName: "HorrorScene")!.xScale > self.childNode(withName: "PeaceScene")!.xScale {
+        if self.childNode(withName: "HorrorScene")!.frame.width >=
+            self.childNode(withName: "PeaceScene")!.frame.width {
             let transition = SKTransition.flipVertical(withDuration: 0.5)
             let gameScene = SKScene(fileNamed: "HorrorScene.sks")!;
             self.view?.presentScene(gameScene, transition: transition) 
@@ -136,7 +136,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
             && node.name != "tri_amarelo" && node.name != "luz_verde_grande"
             && node.name != "luz_verde_pequena" && node.name != "luz_verde_pequena_top"
             && node.name != "luz_rosa_pequena" && node.name != "luz_rosa_grande"
-            && node.name != "luz_amarela_grande"{
+            && node.name != "luz_amarela_grande" && node.name != "LightBottom"
+            && node.name != "LightTop" && node.name != "Sol"{
                 if let sprite : SKSpriteNode = node as? SKSpriteNode {
                     if (sprite.frame.contains(location)) {
                         
