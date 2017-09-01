@@ -22,15 +22,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     
     override func didMove(to view: SKView) {
-//        let bg = self.childNode(withName: "Background")
-////        bg?.alpha = 0.7
-//        let moveAction = SKAction.moveTo(x: -320, duration: 35.0)
-////        bg?.zPosition = 100
-//        bg.self?.run(moveAction)
-        
-//        let sol = self.childNode(withName: "Sol")
-//        let moveSol = SKAction.moveTo(x: 1070, duration: 30.0)
-//        sol?.run(moveSol)
         
         let tri_rosa = self.childNode(withName: "tri_rosa")
         let piscaTriangulosRosa = SKAction.sequence([SKAction.fadeOut(withDuration: 5), SKAction.fadeIn(withDuration: 5)])
@@ -145,8 +136,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                             sprite.removeAllActions()
                         }
                         
-                        sprite.xScale = self.focusScale
-                        sprite.yScale = self.focusScale
+                        sprite.run(SKAction.scale(to: CGFloat(self.focusScale), duration: 0.25))
                         
                         let difX:CGFloat = sprite.position.x - xDiff
                         let difY:CGFloat = sprite.position.y - yDiff
@@ -160,7 +150,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                             // se nao estiver selecionado, volte a escala normal
                             sprite.zPosition = 1
                             
-                            let scaleAction:SKAction = SKAction.scale(to: self.UnfocusScale, duration: 0.5)
+                            let scaleAction:SKAction = SKAction.scale(to: self.UnfocusScale, duration: 0.25)
                             scaleAction.timingMode = .easeOut
                             sprite.run(scaleAction)
                             

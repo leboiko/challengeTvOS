@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class HappyScene: SKScene {
     
@@ -18,10 +19,13 @@ class HappyScene: SKScene {
     var currentTexture = 0
     var textures = [SKShapeNode(circleOfRadius: 10), SKShapeNode(rectOf: CGSize(width: 20, height: 30))]
     fileprivate var dust: Dust1?
+    var action: SKAction?
+    var avplayer: AVAudioPlayer?
     
     override func didMove(to view: SKView) {
         
-        self.run(SKAction.repeatForever(SKAction.playSoundFileNamed("Lights - Just Happy.mp3", waitForCompletion: true)))
+        avplayer = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "Lights - Just Happy.mp3", ofType:nil)!))
+        avplayer?.play()
         
         fire = SKEmitterNode(fileNamed: "MyParticle.sks")
         let circle = SKShapeNode(circleOfRadius: 10)
@@ -59,9 +63,18 @@ class HappyScene: SKScene {
         
         let tapRec = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         self.view?.addGestureRecognizer(tapRec)
+        
+        let menuRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(menuButton(_:)))
+        menuRecognizer.allowedPressTypes = [NSNumber(value: UIPressType.menu.rawValue)]
+        self.view?.addGestureRecognizer(menuRecognizer)
+    }
+    
+    func menuButton(_ tapRecognizer : UITapGestureRecognizer){
+        self.view?.presentScene(SKScene(fileNamed: "GameScene.sks")!, transition: SKTransition.flipVertical(withDuration: 0.5))
     }
     
     override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        avplayer?.stop()
         if(presses.first?.type == UIPressType.menu) {
             let transition = SKTransition.flipVertical(withDuration: 1.5)
             let gameScene = SKScene(fileNamed: "GameScene.sks")!;

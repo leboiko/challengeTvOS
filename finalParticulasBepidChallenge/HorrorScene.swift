@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 import GameController
+import AVFoundation
 
 class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegate, ReactToMotionEvents {
 
@@ -22,11 +23,13 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
     var ouveTroca = false
     var particulasPrincipais = [SKEmitterNode]()
     var particulasSecundarias = [SKEmitterNode()]
-    
+    var avplayer: AVAudioPlayer?
     
     override func didMove(to view: SKView) {
         
-        self.run(SKAction.repeatForever(SKAction.playSoundFileNamed("Lights - Creepy.mp3", waitForCompletion: true)))
+        let path = Bundle.main.path(forResource: "Lights - Creepy.mp3", ofType:nil)!
+        avplayer = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+        avplayer?.play()
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.motionDelegate = self
@@ -51,22 +54,20 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
         self.particles?.particleBirthRate = CGFloat(self.rateParticulasFinas)
         self.particles2?.particleBirthRate = CGFloat(self.rateParticulasFinas)
         
-        //        self.editarParticulasPrincipais(listaParticulas: self.particulasPrincipais)
-        //        self.editarParticulasSecundarias(listaParticulas: self.particulasSecundarias)
-        
-        
-        //        let bgNode = self.childNode(withName: "backgroundParticle")
-        //        let nodeImagemTextura = SKSpriteNode(imageNamed: "text")
-        //        nodeImagemTextura.setScale(0.3)
-        //        bgNode.particleTexture = self.view?.texture(from: nodeImagemTextura)
-        
-        
-        
         
         let tapGestureSelect = UITapGestureRecognizer.init(target: self, action: #selector(tapSelect(_:)))
         tapGestureSelect.allowedPressTypes.append(NSNumber.init(value: UIPressType.select.rawValue))
         tapGestureSelect.delegate = self
         self.view?.addGestureRecognizer(tapGestureSelect)
+        
+        let menuRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(menuButton(_:)))
+        menuRecognizer.allowedPressTypes = [NSNumber(value: UIPressType.menu.rawValue)]
+        self.view?.addGestureRecognizer(menuRecognizer)
+    }
+    
+    func menuButton(_ tapRecognizer : UITapGestureRecognizer){
+        avplayer?.stop()
+        self.view?.presentScene(SKScene(fileNamed: "GameScene.sks")!, transition: SKTransition.flipVertical(withDuration: 0.5))
     }
     
     func motionUpdate(motion: GCMotion) {
@@ -85,14 +86,6 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
     }
     
     func touchUp(atPoint pos : CGPoint) {
-    }
-    
-    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-        if(presses.first?.type == UIPressType.menu) {
-            let transition = SKTransition.flipVertical(withDuration: 1.5)
-            let gameScene = SKScene(fileNamed: "GameScene.sks")!;
-            self.view?.presentScene(gameScene, transition: transition)
-        }
     }
     
     func tapSelect(_ sender: UITapGestureRecognizer) {
