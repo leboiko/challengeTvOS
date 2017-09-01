@@ -358,7 +358,7 @@
 				DEVELOPMENT_TEAM = C3P2NE45V3;
 				INFOPLIST_FILE = finalParticulasBepidChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.helldad.UmbrellaCorp.finalParticulasBepidChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = UmbrelaCorp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -374,7 +374,7 @@
 				DEVELOPMENT_TEAM = C3P2NE45V3;
 				INFOPLIST_FILE = finalParticulasBepidChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.helldad.UmbrellaCorp.finalParticulasBepidChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = UmbrelaCorp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

@@ -61,7 +61,9 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
         //        bgNode.particleTexture = self.view?.texture(from: nodeImagemTextura)
         
         
-        
+        let menuRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(menuButton(_:)))
+        menuRecognizer.allowedPressTypes = [NSNumber(value: UIPressType.menu.rawValue)]
+        self.view?.addGestureRecognizer(menuRecognizer)
         
         let tapGestureSelect = UITapGestureRecognizer.init(target: self, action: #selector(tapSelect(_:)))
         tapGestureSelect.allowedPressTypes.append(NSNumber.init(value: UIPressType.select.rawValue))
@@ -73,6 +75,9 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
         atualizaCorPArticulas(controle: ouveTroca)
     }
     
+    func menuButton(_ tapRecognizer : UITapGestureRecognizer){
+            self.view?.presentScene(SKScene(fileNamed: "GameScene.sks")!, transition: SKTransition.flipVertical(withDuration: 0.5))
+    }
     
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
@@ -87,13 +92,13 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
     func touchUp(atPoint pos : CGPoint) {
     }
     
-    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-        if(presses.first?.type == UIPressType.menu) {
-            let transition = SKTransition.flipVertical(withDuration: 1.5)
-            let gameScene = SKScene(fileNamed: "GameScene.sks")!;
-            self.view?.presentScene(gameScene, transition: transition)
-        }
-    }
+//    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+//        if(presses.first?.type == UIPressType.menu) {
+//            let transition = SKTransition.flipVertical(withDuration: 1.5)
+//            let gameScene = SKScene(fileNamed: "GameScene.sks")!;
+//            self.view?.presentScene(gameScene, transition: transition)
+//        }
+//    }
     
     func tapSelect(_ sender: UITapGestureRecognizer) {
         if !self.ouveTroca {
