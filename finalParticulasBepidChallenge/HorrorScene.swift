@@ -16,23 +16,32 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
     let particles2 = SKEmitterNode(fileNamed: "fireParticle.sks")
     let particles3 = SKEmitterNode(fileNamed: "smoke2.sks")
     let particles4 = SKEmitterNode(fileNamed: "magic2.sks")
-    let rateParticulasFinas = 300
+    let rateParticulasFinas = 600
     let rateParticulas = 300
     var ouveTroca = false
     var particulasPrincipais = [SKEmitterNode]()
+    var particulasSecundarias = [SKEmitterNode()]
+    
     
     override func didMove(to view: SKView) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.motionDelegate = self
         
         self.backgroundColor = UIColor.black
+
         
         self.particulasPrincipais.append(self.particles!)
-        self.particulasPrincipais.append(self.particles2!)
-        self.particulasPrincipais.append(self.particles3!)
         self.particulasPrincipais.append(self.particles4!)
+        self.particulasSecundarias.append(self.particles3!)
+        self.particulasSecundarias.append(self.particles2!)
         
-        resetParticles(listaParticulas: particulasPrincipais)
+        
+        self.resetParticles(listaParticulas: self.particulasPrincipais)
+        self.resetParticles(listaParticulas: self.particulasSecundarias)
+        
+        self.editarParticulasPrincipais(listaParticulas: self.particulasPrincipais)
+//        self.editarParticulasSecundarias(listaParticulas: self.particulasSecundarias)
+        
 
         let tapGestureSelect = UITapGestureRecognizer.init(target: self, action: #selector(tapSelect(_:)))
         tapGestureSelect.allowedPressTypes.append(NSNumber.init(value: UIPressType.select.rawValue))
@@ -136,6 +145,7 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
     
     func resetParticles(listaParticulas: [SKEmitterNode]) {
         for particula in listaParticulas {
+//            particula.particleTexture = self.view?.texture(from: SKShapeNode(circleOfRadius: 10))
             particula.position = CGPoint(x: 0, y: 0)
             particula.targetNode = self
             particula.particleBirthRate = 0
@@ -143,18 +153,37 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
         }
     }
     
+    func editarParticulasPrincipais(listaParticulas: [SKEmitterNode]) {
+        for particula in listaParticulas {
+            particula.particleTexture = self.view?.texture(from: SKShapeNode(rectOf: CGSize(width: 10, height: 10)))
+        }
+    }
+    
+    func editarParticulasSecundarias(listaParticulas: [SKEmitterNode]) {
+        let forma = SKShapeNode(ellipseOf: CGSize(width: 30, height: 10))
+        forma.lineWidth = 10.0
+        forma.fillColor = SKColor.red
+        for particula in listaParticulas {
+            particula.particleTexture = self.view?.texture(from: SKShapeNode(ellipseOf: CGSize(width: 50, height: 10)))
+//            particula.xScale = 0.05
+//            particula.yScale = 0.05
+            
+        }
+    }
+    
+    
     func atualizaCorPArticulas (controle: Bool) {
-        let colors = [#colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1), #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1), #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1), #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1), #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)]
+        let colors = [#colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1), #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1), #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1), #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1), #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1), #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)]
         let random = Int(arc4random_uniform(UInt32(colors.count)))
         
         if !controle {
-            self.particles?.particleColorSequence = nil
-            self.particles?.particleColorBlendFactor = 1000.0
-            self.particles?.particleColor = colors[random]
+            self.particles2?.particleColorSequence = nil
+            self.particles2?.particleColorBlendFactor = 1000.0
+            self.particles2?.particleColor = colors[random]
         } else {
-            self.particles4?.particleColorSequence = nil
-            self.particles4?.particleColorBlendFactor = 1000.0
-            self.particles4?.particleColor = colors[random]
+            self.particles3?.particleColorSequence = nil
+            self.particles3?.particleColorBlendFactor = 1000.0
+            self.particles3?.particleColor = colors[random]
         }
         
     }

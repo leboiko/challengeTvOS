@@ -19,10 +19,25 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     var wiggleAmount:CGFloat = 50 // the lower the value, the more wiggle
     
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    
     
     override func didMove(to view: SKView) {
+        let bg = self.childNode(withName: "Background")
+//        bg?.alpha = 0.7
+        let moveAction = SKAction.moveTo(x: -320, duration: 35.0)
+//        bg?.zPosition = 100
+        bg.self?.run(moveAction)
+        
+        let sol = self.childNode(withName: "Sol")
+        let moveSol = SKAction.moveTo(x: 1070, duration: 30.0)
+        sol?.run(moveSol)
+        
+        let grass = self.childNode(withName: "Grass")
+//        grass?.zPosition = 2
+        //        bg?.alpha = 0.7
+        let moveAction2 = SKAction.moveTo(x: -404, duration: 75.0)
+        grass.self?.run(moveAction2)
+        
         
         self.childNode(withName: "HorrorScene")?.xScale = self.UnfocusScale
         self.childNode(withName: "HorrorScene")?.yScale = self.UnfocusScale
@@ -43,7 +58,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     func tapSelect(_ sender: UITapGestureRecognizer) {
         if (self.childNode(withName: "HorrorScene")?.contains(self.lastLocation))! {
             let transition = SKTransition.flipVertical(withDuration: 0.5)
-            let gameScene = HorrorScene(size: self.size);
+            let gameScene = SKScene(fileNamed: "HorrorScene.sks")!;
             self.view?.presentScene(gameScene, transition: transition) 
         }
     }

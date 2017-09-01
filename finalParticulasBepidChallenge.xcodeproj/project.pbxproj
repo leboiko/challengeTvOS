@@ -20,6 +20,8 @@
 		7509B9161F5753F700B90038 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7509B9121F5753F700B90038 /* MyParticle.sks */; };
 		7509B9171F5753F700B90038 /* magic2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7509B9131F5753F700B90038 /* magic2.sks */; };
 		7509B91B1F57569F00B90038 /* smoke2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7509B91A1F57569F00B90038 /* smoke2.sks */; };
+		752227AF1F57B78400524B1D /* Chuva.sks in Resources */ = {isa = PBXBuildFile; fileRef = 752227AE1F57B78400524B1D /* Chuva.sks */; };
+		752227B31F58CFC300524B1D /* HorrorScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 752227B21F58CFC300524B1D /* HorrorScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		7509B9121F5753F700B90038 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		7509B9131F5753F700B90038 /* magic2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magic2.sks; sourceTree = "<group>"; };
 		7509B91A1F57569F00B90038 /* smoke2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smoke2.sks; sourceTree = "<group>"; };
+		752227AE1F57B78400524B1D /* Chuva.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Chuva.sks; sourceTree = "<group>"; };
+		752227B21F58CFC300524B1D /* HorrorScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HorrorScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				7509B90E1F5752CB00B90038 /* HorrorScene.swift */,
+				752227B21F58CFC300524B1D /* HorrorScene.sks */,
 			);
 			name = Games;
 			sourceTree = "<group>";
@@ -100,6 +105,7 @@
 				7509B9121F5753F700B90038 /* MyParticle.sks */,
 				7509B9131F5753F700B90038 /* magic2.sks */,
 				7509B91A1F57569F00B90038 /* smoke2.sks */,
+				752227AE1F57B78400524B1D /* Chuva.sks */,
 			);
 			name = Particles;
 			sourceTree = "<group>";
@@ -169,8 +175,10 @@
 				7509B8FE1F57337D00B90038 /* Game.xcassets in Resources */,
 				7509B91B1F57569F00B90038 /* smoke2.sks in Resources */,
 				7509B9151F5753F700B90038 /* fireParticle.sks in Resources */,
+				752227B31F58CFC300524B1D /* HorrorScene.sks in Resources */,
 				7509B9171F5753F700B90038 /* magic2.sks in Resources */,
 				7509B9161F5753F700B90038 /* MyParticle.sks in Resources */,
+				752227AF1F57B78400524B1D /* Chuva.sks in Resources */,
 				7509B9051F57337D00B90038 /* Main.storyboard in Resources */,
 				7509B9071F57337D00B90038 /* Assets.xcassets in Resources */,
 			);
@@ -344,6 +352,7 @@
 				7509B90D1F57337D00B90038 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
