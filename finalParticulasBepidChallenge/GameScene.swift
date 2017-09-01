@@ -26,17 +26,39 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
 //        bg?.alpha = 0.7
         let moveAction = SKAction.moveTo(x: -320, duration: 35.0)
 //        bg?.zPosition = 100
-        bg.self?.run(moveAction)
+//        bg.self?.run(moveAction)
         
         let sol = self.childNode(withName: "Sol")
         let moveSol = SKAction.moveTo(x: 1070, duration: 30.0)
         sol?.run(moveSol)
         
-        let grass = self.childNode(withName: "Grass")
+        let rosa_pequena = self.childNode(withName: "rosa_small")
 //        grass?.zPosition = 2
         //        bg?.alpha = 0.7
-        let moveAction2 = SKAction.moveTo(x: -404, duration: 75.0)
-        grass.self?.run(moveAction2)
+        let moveAction2 = SKAction.rotate(byAngle: CGFloat(2 * Double.pi), duration: 15.0)
+        rosa_pequena.self?.run(SKAction.repeatForever(moveAction2))
+        
+        let tri_verde = self.childNode(withName: "tri_verde")
+        //        grass?.zPosition = 2
+        //        bg?.alpha = 0.7
+        let moveAction3 = SKAction.fadeOut(withDuration: 5)
+        let moveAction4 = SKAction.fadeIn(withDuration: 5)
+        tri_verde.self?.run(SKAction.repeatForever(SKAction.sequence([moveAction3, moveAction4])))
+        
+        let tri_rosa = self.childNode(withName: "tri_rosa")
+        //        grass?.zPosition = 2
+        //        bg?.alpha = 0.7
+        let moveAction5 = SKAction.fadeOut(withDuration: 8)
+        let moveAction6 = SKAction.fadeIn(withDuration: 8)
+        tri_rosa.self?.run(SKAction.repeatForever(SKAction.sequence([moveAction5, moveAction6])))
+        
+        let luz_tri_verde = self.childNode(withName: "luz_verde")
+        //        grass?.zPosition = 2
+        //        bg?.alpha = 0.7
+        let moveAction7 = SKAction.fadeOut(withDuration: 2)
+        let moveAction8 = SKAction.fadeIn(withDuration: 2)
+        luz_tri_verde.self?.run(SKAction.repeatForever(SKAction.sequence([moveAction7, moveAction8])))
+        
         
         
         self.childNode(withName: "HorrorScene")?.xScale = self.UnfocusScale
