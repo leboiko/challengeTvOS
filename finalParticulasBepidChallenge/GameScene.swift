@@ -22,22 +22,28 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     
     override func didMove(to view: SKView) {
-        let bg = self.childNode(withName: "Background")
-//        bg?.alpha = 0.7
-        let moveAction = SKAction.moveTo(x: -320, duration: 35.0)
-//        bg?.zPosition = 100
-        bg.self?.run(moveAction)
+//        let bg = self.childNode(withName: "Background")
+////        bg?.alpha = 0.7
+//        let moveAction = SKAction.moveTo(x: -320, duration: 35.0)
+////        bg?.zPosition = 100
+//        bg.self?.run(moveAction)
         
-        let sol = self.childNode(withName: "Sol")
-        let moveSol = SKAction.moveTo(x: 1070, duration: 30.0)
-        sol?.run(moveSol)
+//        let sol = self.childNode(withName: "Sol")
+//        let moveSol = SKAction.moveTo(x: 1070, duration: 30.0)
+//        sol?.run(moveSol)
         
-        let grass = self.childNode(withName: "Grass")
-//        grass?.zPosition = 2
-        //        bg?.alpha = 0.7
-        let moveAction2 = SKAction.moveTo(x: -404, duration: 75.0)
-        grass.self?.run(moveAction2)
+        let tri_rosa = self.childNode(withName: "tri_rosa")
+        let piscaTriangulosRosa = SKAction.sequence([SKAction.fadeOut(withDuration: 5), SKAction.fadeIn(withDuration: 5)])
+        tri_rosa.self?.run(SKAction.repeatForever(piscaTriangulosRosa))
         
+        
+        let tri_verde = self.childNode(withName: "tri_verde")
+        let piscaTriangulosVerde = SKAction.sequence([SKAction.fadeOut(withDuration: 8), SKAction.fadeIn(withDuration: 8)])
+        tri_verde.self?.run(SKAction.repeatForever(piscaTriangulosVerde))
+        
+        let tri_amarelo = self.childNode(withName: "tri_amarelo")
+        let piscaTriangulosAmarelo = SKAction.sequence([SKAction.fadeOut(withDuration: 7), SKAction.fadeIn(withDuration: 7)])
+        tri_amarelo.self?.run(SKAction.repeatForever(piscaTriangulosAmarelo))
         
         self.childNode(withName: "HorrorScene")?.xScale = self.UnfocusScale
         self.childNode(withName: "HorrorScene")?.yScale = self.UnfocusScale
@@ -56,7 +62,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     
     func tapSelect(_ sender: UITapGestureRecognizer) {
-        if self.childNode(withName: "HorrorScene")!.frame.size.width > self.childNode(withName: "PeaceScene")!.frame.size.width {
+        
+        
+        
+        if self.childNode(withName: "HorrorScene")!.xScale > self.childNode(withName: "PeaceScene")!.xScale {
             let transition = SKTransition.flipVertical(withDuration: 0.5)
             let gameScene = SKScene(fileNamed: "HorrorScene.sks")!;
             self.view?.presentScene(gameScene, transition: transition) 
@@ -122,7 +131,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         self.lastLocation = location
         
         self.enumerateChildNodes(withName: "//*") {node, stop in
-            if node.name != "Background" && node.name != "Logo"{
+            if node.name != "Background" && node.name != "Logo"
+            && node.name != "tri_rosa" && node.name != "tri_verde"
+            && node.name != "tri_amarelo" && node.name != "luz_verde_grande"
+            && node.name != "luz_verde_pequena" && node.name != "luz_verde_pequena_top"
+            && node.name != "luz_rosa_pequena" && node.name != "luz_rosa_grande"
+            && node.name != "luz_amarela_grande"{
                 if let sprite : SKSpriteNode = node as? SKSpriteNode {
                     if (sprite.frame.contains(location)) {
                         

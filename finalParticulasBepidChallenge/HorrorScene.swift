@@ -87,6 +87,13 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
     func touchUp(atPoint pos : CGPoint) {
     }
     
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        if(presses.first?.type == UIPressType.menu) {
+            let transition = SKTransition.flipVertical(withDuration: 1.5)
+            let gameScene = SKScene(fileNamed: "GameScene.sks")!;
+            self.view?.presentScene(gameScene, transition: transition)
+        }
+    }
     
     func tapSelect(_ sender: UITapGestureRecognizer) {
         if !self.ouveTroca {
