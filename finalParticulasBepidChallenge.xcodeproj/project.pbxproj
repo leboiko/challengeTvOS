@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		510E03701F58E74C00A9C0E7 /* Rain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 510E036F1F58E74C00A9C0E7 /* Rain.sks */; };
+		510E03741F58FFF300A9C0E7 /* Lights - Just Happy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 510E03731F58FFF300A9C0E7 /* Lights - Just Happy.mp3 */; };
+		510E03761F59006500A9C0E7 /* Lights - Creepy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 510E03751F59006500A9C0E7 /* Lights - Creepy.mp3 */; };
+		51415C251F58936F00E45CA7 /* HappyScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51415C241F58936F00E45CA7 /* HappyScene.sks */; };
+		51415C271F58939B00E45CA7 /* HappyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51415C261F58939B00E45CA7 /* HappyScene.swift */; };
+		5185A6511F589D7A00E88340 /* FireParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5185A6501F589D7A00E88340 /* FireParticles.sks */; };
 		7509B8F81F57337D00B90038 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7509B8F71F57337D00B90038 /* AppDelegate.swift */; };
 		7509B8FA1F57337D00B90038 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7509B8F91F57337D00B90038 /* GameScene.sks */; };
 		7509B8FC1F57337D00B90038 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7509B8FB1F57337D00B90038 /* Actions.sks */; };
@@ -20,11 +26,18 @@
 		7509B9161F5753F700B90038 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7509B9121F5753F700B90038 /* MyParticle.sks */; };
 		7509B9171F5753F700B90038 /* magic2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7509B9131F5753F700B90038 /* magic2.sks */; };
 		7509B91B1F57569F00B90038 /* smoke2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7509B91A1F57569F00B90038 /* smoke2.sks */; };
-		752227AF1F57B78400524B1D /* Chuva.sks in Resources */ = {isa = PBXBuildFile; fileRef = 752227AE1F57B78400524B1D /* Chuva.sks */; };
-		752227B31F58CFC300524B1D /* HorrorScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 752227B21F58CFC300524B1D /* HorrorScene.sks */; };
+		752227EB1F59AB3800524B1D /* bg1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 752227E91F59AB3800524B1D /* bg1.sks */; };
+		752227EC1F59AB3800524B1D /* bg2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 752227EA1F59AB3800524B1D /* bg2.sks */; };
+		752227EE1F59ACC000524B1D /* HorrorScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 752227ED1F59ACC000524B1D /* HorrorScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		510E036F1F58E74C00A9C0E7 /* Rain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rain.sks; sourceTree = "<group>"; };
+		510E03731F58FFF300A9C0E7 /* Lights - Just Happy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lights - Just Happy.mp3"; sourceTree = "<group>"; };
+		510E03751F59006500A9C0E7 /* Lights - Creepy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lights - Creepy.mp3"; sourceTree = "<group>"; };
+		51415C241F58936F00E45CA7 /* HappyScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HappyScene.sks; sourceTree = "<group>"; };
+		51415C261F58939B00E45CA7 /* HappyScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HappyScene.swift; sourceTree = "<group>"; };
+		5185A6501F589D7A00E88340 /* FireParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticles.sks; sourceTree = "<group>"; };
 		7509B8F41F57337D00B90038 /* finalParticulasBepidChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = finalParticulasBepidChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7509B8F71F57337D00B90038 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7509B8F91F57337D00B90038 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -40,8 +53,9 @@
 		7509B9121F5753F700B90038 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		7509B9131F5753F700B90038 /* magic2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = magic2.sks; sourceTree = "<group>"; };
 		7509B91A1F57569F00B90038 /* smoke2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smoke2.sks; sourceTree = "<group>"; };
-		752227AE1F57B78400524B1D /* Chuva.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Chuva.sks; sourceTree = "<group>"; };
-		752227B21F58CFC300524B1D /* HorrorScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HorrorScene.sks; sourceTree = "<group>"; };
+		752227E91F59AB3800524B1D /* bg1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = bg1.sks; sourceTree = "<group>"; };
+		752227EA1F59AB3800524B1D /* bg2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = bg2.sks; sourceTree = "<group>"; };
+		752227ED1F59ACC000524B1D /* HorrorScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HorrorScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,13 +88,13 @@
 		7509B8F61F57337D00B90038 /* finalParticulasBepidChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				752227EF1F59AD0800524B1D /* Music */,
 				7509B8F71F57337D00B90038 /* AppDelegate.swift */,
-				7509B8F91F57337D00B90038 /* GameScene.sks */,
+				752227F01F59AE8A00524B1D /* MainScene */,
 				7509B8FB1F57337D00B90038 /* Actions.sks */,
 				7509B8FD1F57337D00B90038 /* Game.xcassets */,
-				7509B8FF1F57337D00B90038 /* GameScene.swift */,
-				7509B9101F57535000B90038 /* Games */,
 				7509B9011F57337D00B90038 /* GameViewController.swift */,
+				7509B9101F57535000B90038 /* Games */,
 				7509B9031F57337D00B90038 /* Main.storyboard */,
 				7509B9061F57337D00B90038 /* Assets.xcassets */,
 				7509B9191F5753FD00B90038 /* Particles */,
@@ -92,8 +106,10 @@
 		7509B9101F57535000B90038 /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				51415C241F58936F00E45CA7 /* HappyScene.sks */,
+				51415C261F58939B00E45CA7 /* HappyScene.swift */,
+				752227ED1F59ACC000524B1D /* HorrorScene.sks */,
 				7509B90E1F5752CB00B90038 /* HorrorScene.swift */,
-				752227B21F58CFC300524B1D /* HorrorScene.sks */,
 			);
 			name = Games;
 			sourceTree = "<group>";
@@ -102,12 +118,33 @@
 			isa = PBXGroup;
 			children = (
 				7509B9111F5753F700B90038 /* fireParticle.sks */,
+				752227E91F59AB3800524B1D /* bg1.sks */,
+				752227EA1F59AB3800524B1D /* bg2.sks */,
 				7509B9121F5753F700B90038 /* MyParticle.sks */,
 				7509B9131F5753F700B90038 /* magic2.sks */,
+				5185A6501F589D7A00E88340 /* FireParticles.sks */,
+				510E036F1F58E74C00A9C0E7 /* Rain.sks */,
 				7509B91A1F57569F00B90038 /* smoke2.sks */,
-				752227AE1F57B78400524B1D /* Chuva.sks */,
 			);
 			name = Particles;
+			sourceTree = "<group>";
+		};
+		752227EF1F59AD0800524B1D /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				510E03751F59006500A9C0E7 /* Lights - Creepy.mp3 */,
+				510E03731F58FFF300A9C0E7 /* Lights - Just Happy.mp3 */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
+		752227F01F59AE8A00524B1D /* MainScene */ = {
+			isa = PBXGroup;
+			children = (
+				7509B8F91F57337D00B90038 /* GameScene.sks */,
+				7509B8FF1F57337D00B90038 /* GameScene.swift */,
+			);
+			name = MainScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +179,7 @@
 				TargetAttributes = {
 					7509B8F31F57337D00B90038 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = C3P2NE45V3;
+						DevelopmentTeam = 6DD46ZP7WT;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -170,16 +207,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				752227EB1F59AB3800524B1D /* bg1.sks in Resources */,
+				510E03701F58E74C00A9C0E7 /* Rain.sks in Resources */,
 				7509B8FA1F57337D00B90038 /* GameScene.sks in Resources */,
 				7509B8FC1F57337D00B90038 /* Actions.sks in Resources */,
 				7509B8FE1F57337D00B90038 /* Game.xcassets in Resources */,
+				510E03741F58FFF300A9C0E7 /* Lights - Just Happy.mp3 in Resources */,
 				7509B91B1F57569F00B90038 /* smoke2.sks in Resources */,
 				7509B9151F5753F700B90038 /* fireParticle.sks in Resources */,
-				752227B31F58CFC300524B1D /* HorrorScene.sks in Resources */,
+				752227EC1F59AB3800524B1D /* bg2.sks in Resources */,
+				51415C251F58936F00E45CA7 /* HappyScene.sks in Resources */,
+				752227EE1F59ACC000524B1D /* HorrorScene.sks in Resources */,
 				7509B9171F5753F700B90038 /* magic2.sks in Resources */,
 				7509B9161F5753F700B90038 /* MyParticle.sks in Resources */,
-				752227AF1F57B78400524B1D /* Chuva.sks in Resources */,
+				5185A6511F589D7A00E88340 /* FireParticles.sks in Resources */,
 				7509B9051F57337D00B90038 /* Main.storyboard in Resources */,
+				510E03761F59006500A9C0E7 /* Lights - Creepy.mp3 in Resources */,
 				7509B9071F57337D00B90038 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +238,7 @@
 				7509B9021F57337D00B90038 /* GameViewController.swift in Sources */,
 				7509B90F1F5752CB00B90038 /* HorrorScene.swift in Sources */,
 				7509B8F81F57337D00B90038 /* AppDelegate.swift in Sources */,
+				51415C271F58939B00E45CA7 /* HappyScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,11 +354,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = C3P2NE45V3;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6DD46ZP7WT;
 				INFOPLIST_FILE = finalParticulasBepidChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = UmbrellaCorp.finalParticulasBepidChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.helldad.UmbrellaCorp.finalParticulasBepidChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -324,11 +370,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = C3P2NE45V3;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6DD46ZP7WT;
 				INFOPLIST_FILE = finalParticulasBepidChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = UmbrellaCorp.finalParticulasBepidChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = com.helldad.UmbrellaCorp.finalParticulasBepidChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
