@@ -43,10 +43,7 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
         self.addChild(self.bgParticle2!)
         
         self.particulasPrincipais.append(self.particles!)
-        //        self.particulasPrincipais.append(self.particles4!)
         self.particulasSecundarias.append(self.particles2!)
-        //        self.particulasSecundarias.append(self.particles2!)
-        //
         
         self.resetParticles(listaParticulas: self.particulasPrincipais)
         self.resetParticles(listaParticulas: self.particulasSecundarias)
@@ -153,9 +150,6 @@ class HorrorScene: SKScene, SKPhysicsContactDelegate, UIGestureRecognizerDelegat
         forma.fillColor = SKColor.red
         for particula in listaParticulas {
             particula.particleTexture = self.view?.texture(from: SKShapeNode(ellipseOf: CGSize(width: 50, height: 10)))
-            //            particula.xScale = 0.05
-            //            particula.yScale = 0.05
-            
         }
     }
     

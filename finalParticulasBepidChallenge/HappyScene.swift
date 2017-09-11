@@ -15,7 +15,6 @@ class HappyScene: SKScene {
     var fire: SKEmitterNode?
     var rain: SKEmitterNode?
     var rain2: SKEmitterNode?
-    var particles: SKEmitterNode?
     var currentTexture = 0
     var textures = [SKShapeNode(circleOfRadius: 10), SKShapeNode(rectOf: CGSize(width: 20, height: 30))]
     fileprivate var dust: Dust1?
@@ -28,14 +27,12 @@ class HappyScene: SKScene {
         avplayer?.play()
         
         fire = SKEmitterNode(fileNamed: "MyParticle.sks")
-        let circle = SKShapeNode(circleOfRadius: 10)
-        fire?.particleTexture = view.texture(from: circle)
+        fire?.particleTexture = view.texture(from: SKShapeNode(circleOfRadius: 10))
         fire?.particleBirthRate = 1000
         fire?.particleScaleRange = 1
         fire?.emissionAngle = 1
         fire?.targetNode = self
-        self.particles = fire
-        self.addChild(self.particles!)
+        self.addChild(self.fire!)
         
         rain = SKEmitterNode(fileNamed: "Rain.sks")
         rain?.particleTexture = view.texture(from: SKShapeNode(circleOfRadius: 10))
@@ -51,8 +48,9 @@ class HappyScene: SKScene {
         rain2?.targetNode = self
         self.addChild(rain2!)
         
-        dust = Dust1(numberOfParticles_: 1500, fillIn: self)
-        dust!.renderIn(node: self)
+        //TODO: optimze loadtime
+        self.dust = Dust1(numberOfParticles_: 1500, fillIn: self)
+        self.dust!.renderIn(node: self)
         
         let path = CGMutablePath()
         path.move(to: CGPoint(x: 0, y: 0))
@@ -87,33 +85,13 @@ class HappyScene: SKScene {
             fire!.particleBirthRate = 0
             rain!.particleBirthRate = 400
             rain2!.particleBirthRate = 400
-            dust?.shapeNodes.forEach({ node in
-                node.isHidden = true
-            })
+            dust?.hide()
         } else {
             fire!.particleBirthRate = 1000
             rain!.particleBirthRate = 0
             rain2!.particleBirthRate = 0
-            dust?.shapeNodes.forEach({ node in
-                node.isHidden = false
-            })
+            dust?.show()
         }
-    }
-    
-    @objc func swipedUp() {
-        dust?.newPosition = CGPoint(x: 0, y: 200)
-    }
-    
-    @objc func swipedDown() {
-        dust?.newPosition = CGPoint(x: 0, y: -200)
-    }
-    
-    @objc func swipedLeft() {
-        dust?.newPosition = CGPoint(x: -400, y: 0)
-    }
-    
-    @objc func swipedRight() {
-        dust?.newPosition = CGPoint(x: 400, y: 0)
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -141,10 +119,6 @@ class HappyScene: SKScene {
         currentTexture = currentTexture + 1
     }
     
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
-        
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
@@ -162,17 +136,13 @@ class HappyScene: SKScene {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        
-    }
-    
     func atualizaCorPArticulas (controle: Bool) {
         let colors = [UIColor.green, UIColor.white, UIColor.yellow, UIColor.cyan, UIColor.red, UIColor.orange, UIColor.purple]
         let random = Int(arc4random_uniform(UInt32(colors.count)))
         
-        self.particles?.particleColorSequence = nil
-        self.particles?.particleColorBlendFactor = 1000.0
-        self.particles?.particleColor = colors[random]
+        self.fire?.particleColorSequence = nil
+        self.fire?.particleColorBlendFactor = 1000.0
+        self.fire?.particleColor = colors[random]
         
         self.rain?.particleColorSequence = nil
         self.rain?.particleColorBlendFactor = 1000.0
@@ -186,7 +156,7 @@ class HappyScene: SKScene {
 
 private class Dust1 {
     
-    var shapeNodes = [SKShapeNode]()
+    var shapeNodes = [SKSpriteNode]()
     var initialPosition = [CGPoint]()
     var gravity: SKFieldNode?
     var isRestoring = false
@@ -202,8 +172,6 @@ private class Dust1 {
         
         for i in 0..<numberOfParticles {
             
-            var shapes = [SKShapeNode]()
-            
             for j in 0..<numberOfParticles {
                 
                 let dx = fillIn.frame.width / CGFloat(numberOfParticles - 1)
@@ -211,15 +179,10 @@ private class Dust1 {
                 let shape = SKShapeNode(circleOfRadius: 2)
                 shape.fillColor = [UIColor.cyan, UIColor.white, UIColor.red][Int(arc4random_uniform(2))]
                 shape.lineWidth = 0
-                shape.physicsBody = SKPhysicsBody(circleOfRadius: shape.frame.width * 0.5)
-                shape.physicsBody?.collisionBitMask = 0x00000000
-                shape.physicsBody?.affectedByGravity = false
-                shape.physicsBody?.mass = 0.04
                 shape.alpha = CGFloat(arc4random_uniform(10)) / 20
                 shape.position = CGPoint(x: CGFloat(20 - Int(arc4random_uniform(40))) + x0 + CGFloat(i) * dx, y: CGFloat(20 - Int(arc4random_uniform(40))) + y0 + CGFloat(j) * dy)
                 initialPosition.append(CGPoint(x: shape.position.x, y: shape.position.y))
-                shapeNodes.append(shape)
-                shapes.append(shape)
+                shapeNodes.append(SKSpriteNode.init(texture: (fillIn as! SKScene).view!.texture(from: shape)))
             }
         }
         
@@ -241,10 +204,10 @@ private class Dust1 {
             }
             
             shapeNodes[i].physicsBody = nil
-            
             shapeNodes[i].run(action_x)
-            shapeNodes[i].run(action_y) {
-                if i == self.shapeNodes.count - 1 {
+            
+            if i == self.shapeNodes.count - 1 {
+                shapeNodes[i].run(action_y) {
                     self.shapeNodes.forEach({ shape in
                         shape.physicsBody = SKPhysicsBody(circleOfRadius: shape.frame.width * 0.5)
                         shape.physicsBody?.collisionBitMask = 0x00000000
@@ -252,6 +215,8 @@ private class Dust1 {
                         self.gravity?.position = self.newPosition
                     })
                 }
+            } else {
+                shapeNodes[i].run(action_y)
             }
         }
         
@@ -272,6 +237,20 @@ private class Dust1 {
         node.run(SKAction.applyAngularImpulse(0, duration: 1)) {
             
             self.restorePositions()
+        }
+    }
+    
+    public func show() {
+        
+        shapeNodes.forEach { node in
+            node.isHidden = false
+        }
+    }
+    
+    public func hide() {
+        
+        shapeNodes.forEach { node in
+            node.isHidden = true
         }
     }
 }

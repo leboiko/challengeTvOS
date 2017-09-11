@@ -19,62 +19,42 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     var wiggleAmount:CGFloat = 50 // the lower the value, the more wiggle
     
     
-    
-    
     override func didMove(to view: SKView) {
+        blinkNodes(nodesAndTime: ["tri_rosa" : 5,
+                                  "tri_verde" : 8,
+                                  "tri_amarelo" : 7])
         
-        let tri_rosa = self.childNode(withName: "tri_rosa")
-        let piscaTriangulosRosa = SKAction.sequence([SKAction.fadeOut(withDuration: 5), SKAction.fadeIn(withDuration: 5)])
-        tri_rosa.self?.run(SKAction.repeatForever(piscaTriangulosRosa))
+        resetNodesToDefaultScale(names: ["HorrorScene", "HappyScene"])
         
-        
-        let tri_verde = self.childNode(withName: "tri_verde")
-        let piscaTriangulosVerde = SKAction.sequence([SKAction.fadeOut(withDuration: 8), SKAction.fadeIn(withDuration: 8)])
-        tri_verde.self?.run(SKAction.repeatForever(piscaTriangulosVerde))
-        
-        let tri_amarelo = self.childNode(withName: "tri_amarelo")
-        let piscaTriangulosAmarelo = SKAction.sequence([SKAction.fadeOut(withDuration: 7), SKAction.fadeIn(withDuration: 7)])
-        tri_amarelo.self?.run(SKAction.repeatForever(piscaTriangulosAmarelo))
-        
-        self.childNode(withName: "HorrorScene")?.xScale = self.UnfocusScale
-        self.childNode(withName: "HorrorScene")?.yScale = self.UnfocusScale
-        self.childNode(withName: "PeaceScene")?.xScale = self.UnfocusScale
-        self.childNode(withName: "PeaceScene")?.yScale = self.UnfocusScale
-        
-        self.childNode(withName: "EmptyButtonOne")?.position = (self.childNode(withName: "PeaceScene")?.position)!
+        self.childNode(withName: "EmptyButtonOne")?.position = (self.childNode(withName: "HappyScene")?.position)!
         self.childNode(withName: "EmptyButtonTwo")?.position = (self.childNode(withName: "HorrorScene")?.position)!
         
         let tapGestureSelect = UITapGestureRecognizer.init(target: self, action: #selector(tapSelect(_:)))
         tapGestureSelect.allowedPressTypes.append(NSNumber.init(value: UIPressType.select.rawValue))
         tapGestureSelect.delegate = self
         self.view?.addGestureRecognizer(tapGestureSelect)
-
+        
     }
     
     
     func tapSelect(_ sender: UITapGestureRecognizer) {
-                
         
-        if self.childNode(withName: "HorrorScene")!.frame.width >=
-            self.childNode(withName: "PeaceScene")!.frame.width {
-            let transition = SKTransition.flipVertical(withDuration: 0.5)
-            let gameScene = SKScene(fileNamed: "HorrorScene.sks")!;
-            self.view?.presentScene(gameScene, transition: transition) 
-        } else {
-            self.view?.presentScene(SKScene(fileNamed: "HappyScene.sks")!, transition: SKTransition.flipVertical(withDuration: 0.5))
-        }
+        let gotoWho:String = whoIsSelected(scenes: ["HorrorScene", "HappyScene"])
+        self.view?.presentScene(SKScene(fileNamed: gotoWho+".sks")!, transition: SKTransition.flipVertical(withDuration: 0.5))
+        
     }
     
+    
     func touchDown(atPoint pos : CGPoint) {
-
+        
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-
+        
     }
     
     func touchUp(atPoint pos : CGPoint) {
-
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -106,13 +86,37 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
     
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        
         if (self.focusedNode != nil) {
             self.childNode(withName: "LightBottom")!.position = CGPoint(x: (focusedNode?.position.x)!, y: (focusedNode?.position.y)! - 100)
         }
     }
     
+    func resetNodesToDefaultScale(names: [String]) {
+        for node in names {
+            self.childNode(withName: node)?.xScale = self.UnfocusScale
+            self.childNode(withName: node)?.yScale = self.UnfocusScale
+        }
+    }
+    
+    func blinkNodes(nodesAndTime: [String : Int]) {
+        for (currentNode, duration) in nodesAndTime {
+            let blinkNode = SKAction.sequence([SKAction.fadeOut(withDuration: TimeInterval(duration)), SKAction.fadeIn(withDuration: TimeInterval(duration))])
+            self.childNode(withName: currentNode).self?.run(SKAction.repeatForever(blinkNode))
+        }
+    }
+    
+    func whoIsSelected(scenes:[String]) -> String {
+        var selectedScene:String = ""
+        var biggestWidth:CGFloat = 0.0
+        for currentScene in scenes {
+            if (self.childNode(withName: currentScene)?.frame.width)! > biggestWidth {
+                selectedScene = currentScene
+                biggestWidth = (self.childNode(withName: currentScene)?.frame.width)!
+            }
+        }
+        return selectedScene
+        
+    }
     
     func checkTouch(location: CGPoint) {
         
@@ -123,12 +127,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
         
         self.enumerateChildNodes(withName: "//*") {node, stop in
             if node.name != "Background" && node.name != "Logo"
-            && node.name != "tri_rosa" && node.name != "tri_verde"
-            && node.name != "tri_amarelo" && node.name != "luz_verde_grande"
-            && node.name != "luz_verde_pequena" && node.name != "luz_verde_pequena_top"
-            && node.name != "luz_rosa_pequena" && node.name != "luz_rosa_grande"
-            && node.name != "luz_amarela_grande" && node.name != "LightBottom"
-            && node.name != "LightTop" && node.name != "Sol"{
+                && node.name != "tri_rosa" && node.name != "tri_verde"
+                && node.name != "tri_amarelo" && node.name != "luz_verde_grande"
+                && node.name != "luz_verde_pequena" && node.name != "luz_verde_pequena_top"
+                && node.name != "luz_rosa_pequena" && node.name != "luz_rosa_grande"
+                && node.name != "luz_amarela_grande" && node.name != "LightBottom"
+                && node.name != "LightTop" && node.name != "Sol"{
                 if let sprite : SKSpriteNode = node as? SKSpriteNode {
                     if (sprite.frame.contains(location)) {
                         
@@ -136,7 +140,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                             sprite.removeAllActions()
                         }
                         
-                        sprite.run(SKAction.scale(to: CGFloat(self.focusScale), duration: 0.25))
+                        sprite.xScale = self.focusScale
+                        sprite.yScale = self.focusScale
                         
                         let difX:CGFloat = sprite.position.x - xDiff
                         let difY:CGFloat = sprite.position.y - yDiff
@@ -144,19 +149,18 @@ class GameScene: SKScene, UIGestureRecognizerDelegate {
                         sprite.position = CGPoint(x: difX, y: difY)
                         sprite.zPosition = 100
                         self.focusedNode = sprite
-//                        print(self.focusedNode!.name)
                     } else {
                         if (sprite != self.focusedNode) {
                             // se nao estiver selecionado, volte a escala normal
                             sprite.zPosition = 1
                             
-                            let scaleAction:SKAction = SKAction.scale(to: self.UnfocusScale, duration: 0.25)
+                            let scaleAction:SKAction = SKAction.scale(to: self.UnfocusScale, duration: 0.5)
                             scaleAction.timingMode = .easeOut
                             sprite.run(scaleAction)
                             
                             var placeholder:CGPoint = CGPoint(x: 0, y: 0)
                             
-                            if (sprite.name == "PeaceScene") {
+                            if (sprite.name == "HappyScene") {
                                 placeholder = self.childNode(withName: "EmptyButtonOne")!.position
                             } else if (sprite.name == "HorrorScene") {
                                 placeholder = self.childNode(withName: "EmptyButtonTwo")!.position
