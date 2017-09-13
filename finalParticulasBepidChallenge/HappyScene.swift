@@ -62,6 +62,10 @@ class HappyScene: SKScene {
         let tapRec = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         self.view?.addGestureRecognizer(tapRec)
         
+        let dblTapRec = UITapGestureRecognizer(target: self, action: #selector(dblTapHandler))
+        dblTapRec.numberOfTapsRequired = 2
+        self.view?.addGestureRecognizer(dblTapRec)
+        
         let menuRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(menuButton(_:)))
         menuRecognizer.allowedPressTypes = [NSNumber(value: UIPressType.menu.rawValue)]
         self.view?.addGestureRecognizer(menuRecognizer)
@@ -78,6 +82,11 @@ class HappyScene: SKScene {
             let gameScene = SKScene(fileNamed: "GameScene.sks")!;
             self.view?.presentScene(gameScene, transition: transition)
         }
+    }
+    
+    @objc func dblTapHandler() {
+        print("Double tap recognized")
+        AdjustsMenu(container: self)
     }
     
     @objc func tapHandler() {
